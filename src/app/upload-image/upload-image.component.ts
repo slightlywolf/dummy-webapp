@@ -26,7 +26,7 @@ export class UploadImageComponent implements OnInit
     reader.addEventListener('load', (event: any) => 
     {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.imageService.uploadImage(this.selectedFile.file).subscribe(
+      this.imageService.uploadImage(this.selectedFile.file, file.name).then(
         (res) => {
             this.onSuccess();
 
