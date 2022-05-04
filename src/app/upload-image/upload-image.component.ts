@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageSnippet } from './ImageSnippet';
 import { ImageServiceService } from '../image-service.service';
 
 @Component({
@@ -11,43 +10,18 @@ export class UploadImageComponent implements OnInit
 {
   constructor(private imageService: ImageServiceService) { }
   
-  selectedFile!: ImageSnippet;
 
-
-  ngOnInit(): void {
-  
-  }
+  ngOnInit(): void {}
 
   processImage(imageInput: any)
   {
+    /* grab file */
     const file: File = imageInput.files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener('load', (event: any) => 
-    {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.imageService.uploadImage(this.selectedFile.file, file.name).then(
-        (res) => {
-            this.onSuccess();
-
-        },
-        (err) => {
-            this.onError();
-
-        })
-    });
-
-    reader.readAsDataURL(file);
+      this.imageService.uploadImage(file).then(
+        /* do something with success */
+      ).catch(
+        /* catch error here */
+      );
   }
 
-  private onSuccess() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'ok';
-  }
-
-  private onError() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'fail';
-    this.selectedFile.src = '';
-  }
 }
