@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs';
-import { waitForAsync } from '@angular/core/testing';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +8,7 @@ export class ImageServiceService {
 
   constructor(private http: HttpClient) { }
 
-
+  /* uploads the image to the lambda function */
   public async uploadImage(image: File): Promise<any>
   {
     // url for the lambda function that will be posted to
@@ -25,8 +21,6 @@ export class ImageServiceService {
     /********BODY of http request */
     var newImage = new LambdaImage();
     newImage.filename = image.name;
-
-
 
     try
     {
@@ -42,6 +36,7 @@ export class ImageServiceService {
 
     } catch(e:any)
     {
+      /* catch any errors here */
       console.warn(e.message());
     }
 
@@ -52,6 +47,7 @@ export class ImageServiceService {
     return this.http.post(URL,jsonConverted, {headers:header}).toPromise();
   }
 
+  /* converts a file (usually an image) to base64 */
   private async fileToBase64(file: File): Promise<any>
   {
     const fr = new FileReader();
@@ -66,7 +62,7 @@ export class ImageServiceService {
         reject(new DOMException("Problem parsing input file."));
       };
       
-      //on work
+      //on working
       fr.onload = () => 
       {
         resolve(fr.result); // return the promise with file read as base64
@@ -78,13 +74,7 @@ export class ImageServiceService {
   }
 }
 
-
-
-//https://www.freakyjolly.com/angular-input-file-image-file-upload-to-base64-tutorial-by-example/
-
-/******
-  Class which holds filename and the base64 image makes json stringify easy
-*/
+//Class which holds filename and the base64 image makes json stringify easy
 class LambdaImage
 {
   filename!: string;

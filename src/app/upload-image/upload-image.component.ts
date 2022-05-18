@@ -17,7 +17,7 @@ export class UploadImageComponent implements OnInit
   {
     /* grab file */
     const file: File = imageInput.files[0];
-      this.imageService.uploadImage(file).then(
+    this.imageService.uploadImage(file).then(
         /* do something with success */
       ).catch(
         /* catch error here */

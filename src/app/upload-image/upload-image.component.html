@@ -1,8 +1,13 @@
-<label class="image-upload-container" >
-    <span>Select Image</span>
-    <input #imageInput
-            type="file"
-            accept="image/*"
-            (change)="processImage(imageInput)">
+<label>
+    <h1 class="text-9xl w-auto h-auto text-center relative top-36">Select Image </h1>
+
+    <div class="antialiased relative text-center w-auto top-48 ">
+        <input 
+        #imageInput
+        type="file"
+        accept="image/*"
+        (change)="processImage(imageInput)">
+    </div>
+
 </label>
 

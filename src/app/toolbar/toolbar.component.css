@@ -6,7 +6,21 @@
     left: 0;
     width: 100%;
     padding: 1.5em;
-    text-align: center;
-    background-color: rgb(77, 27, 24);
-    color: aliceblue;
+}
+
+.laroma-1
+{
+    background-color: #f4f2f3;
+}
+.laroma-2
+{
+    background-color: #c0a9bd;
+}
+.laroma-3
+{
+    background-color: #94a7ae;
+}
+.laroma-4
+{
+    background-color: #64766a;
 }
